@@ -1,9 +1,12 @@
 // src/data/eventsData.ts
 
+export type EventCategory = 'technical' | 'non-technical';
+
 export const eventsData = [
     {
         id: 1,
         title: "The Upside Down Hackathon",
+        category: 'technical' as EventCategory,
         date: "Oct 28, 2024",
         location: "Hawkins Lab",
         description: "Code your way out of the alternate dimension. 24-hour survival coding challenge.",
@@ -26,6 +29,7 @@ export const eventsData = [
     {
         id: 2,
         title: "Demogorgon Debugging",
+        category: 'technical' as EventCategory,
         date: "Nov 02, 2024",
         location: "Arcade",
         description: "Hunt down bugs that are tearing through the firewall. Intro to cybersecurity.",
@@ -48,6 +52,7 @@ export const eventsData = [
     {
         id: 3,
         title: "Mind Flayer AI Workshop",
+        category: 'technical' as EventCategory,
         date: "Nov 10, 2024",
         location: "Starcourt Mall",
         description: "Understanding hive mind algorithms and neural networks. Don't let it control you.",
@@ -70,6 +75,7 @@ export const eventsData = [
     {
         id: 4,
         title: "Cerebro Radio Comms",
+        category: 'technical' as EventCategory,
         date: "Nov 15, 2024",
         location: "Weathertop",
         description: "Building long-range HAM radios. Learn to communicate across the void.",
@@ -92,6 +98,7 @@ export const eventsData = [
     {
         id: 5,
         title: "Hellfire Club D&D Night",
+        category: 'non-technical' as EventCategory,
         date: "Nov 22, 2024",
         location: "High School Cafe",
         description: "Strategic planning and role-playing game night. Join the campaign.",
@@ -113,6 +120,7 @@ export const eventsData = [
     {
         id: 6,
         title: "Project Nina: UI/UX",
+        category: 'technical' as EventCategory,
         date: "Dec 01, 2024",
         location: "Rainbow Room",
         description: "Designing interfaces that tap into human potential. Focus on user psychology.",
@@ -135,6 +143,7 @@ export const eventsData = [
     {
         id: 7,
         title: "Palace Arcade Retro Dev",
+        category: 'technical' as EventCategory,
         date: "Dec 05, 2024",
         location: "The Palace",
         description: "Game development workshop using 8-bit assets and synthwave aesthetics.",
@@ -156,6 +165,7 @@ export const eventsData = [
     {
         id: 8,
         title: "Into the Void: VR Tech",
+        category: 'technical' as EventCategory,
         date: "Dec 12, 2024",
         location: "Gymnasium",
         description: "Sensory deprivation and Virtual Reality exploration.",
@@ -177,6 +187,7 @@ export const eventsData = [
     {
         id: 9,
         title: "Snow Ball Gala",
+        category: 'non-technical' as EventCategory,
         date: "Dec 20, 2024",
         location: "School Hall",
         description: "End of year networking event. Dress sharp, it's 1984.",

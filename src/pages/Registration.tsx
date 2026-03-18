@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { eventsData } from '../data/eventsData';
 
+const API_URL = 'http://localhost:5000';
+
 const Registration = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -21,6 +23,9 @@ const Registration = () => {
 
     // Dynamic State for Additional Members (Added Phone)
     const [members, setMembers] = useState<{ name: string; email: string; phone: string }[]>([]);
+    const [submitting, setSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState('');
+    const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
     // Handle Team Size Change (Dropdown Logic)
     const handleTeamSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -54,10 +59,48 @@ const Registration = () => {
         setMembers(updatedMembers);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log({ ...formData, members }); // For debugging
-        alert("Transmission Sent to Hawkins Lab.");
+        setSubmitting(true);
+        setSubmitError('');
+
+        try {
+            const payload = {
+                eventId: event?.id,
+                eventName: event?.title || '',
+                teamName: formData.teamName,
+                collegeName: formData.collegeName,
+                department: formData.department,
+                branch: formData.branch,
+                teamLeadName: formData.teamLeadName,
+                teamLeadEmail: formData.teamLeadEmail,
+                teamLeadPhone: formData.teamLeadPhone,
+                teamSize: formData.teamSize,
+                members: members,
+            };
+
+            const response = await fetch(`${API_URL}/api/register`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setShowSuccessPopup(true);
+            } else {
+                setSubmitError(data.error || 'Registration failed. Please try again.');
+            }
+        } catch (err) {
+            setSubmitError('Cannot connect to server. Please make sure the backend is running.');
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+    const closeSuccessPopup = () => {
+        setShowSuccessPopup(false);
         navigate('/');
     };
 
@@ -73,6 +116,32 @@ const Registration = () => {
             justifyContent: 'center', 
             alignItems: 'center' 
         }}>
+            {showSuccessPopup && (
+                <div style={successOverlayStyle} role="dialog" aria-modal="true" aria-labelledby="success-popup-title">
+                    <div style={successPopupStyle}>
+                        <h2 id="success-popup-title" style={successTitleStyle}>REGISTRATION IS SUBMITTED</h2>
+                        <p style={successTextStyle}>
+                            The Event registration is successful our student coordinators will contact you for further details
+                        </p>
+                        <button
+                            type="button"
+                            style={successButtonStyle}
+                            onClick={closeSuccessPopup}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = '#ffffff';
+                                e.currentTarget.style.color = '#050505';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = 'var(--color-primary)';
+                                e.currentTarget.style.color = '#050505';
+                            }}
+                        >
+                            Return Home
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <div className="hawkins-container" style={{ maxWidth: '800px', width: '100%', padding: '3rem' }}>
                 
                 {/* Header */}
@@ -84,6 +153,12 @@ const Registration = () => {
                         EVENT CODE: {event.title.toUpperCase()}
                     </p>
                 </div>
+
+                {submitError && (
+                    <div style={{ background: 'rgba(255, 68, 68, 0.1)', border: '1px solid rgba(255, 68, 68, 0.3)', padding: '0.8rem 1rem', marginBottom: '1rem', fontFamily: 'var(--font-digital)', fontSize: '0.8rem', color: '#ff6666' }}>
+                        ⚠ {submitError}
+                    </div>
+                )}
 
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                     
@@ -200,17 +275,20 @@ const Registration = () => {
 
                         <button 
                             type="submit" 
-                            style={submitButtonStyle}
+                            disabled={submitting}
+                            style={{ ...submitButtonStyle, opacity: submitting ? 0.7 : 1, cursor: submitting ? 'wait' : 'pointer' }}
                             onMouseEnter={(e) => {
-                                e.currentTarget.style.background = '#fff';
-                                e.currentTarget.style.color = 'var(--color-primary)';
+                                if (!submitting) {
+                                    e.currentTarget.style.background = '#fff';
+                                    e.currentTarget.style.color = 'var(--color-primary)';
+                                }
                             }}
                             onMouseLeave={(e) => {
                                 e.currentTarget.style.background = 'var(--color-primary)';
                                 e.currentTarget.style.color = '#000';
                             }}
                         >
-                            Submit Registration
+                            {submitting ? 'TRANSMITTING...' : 'Submit Registration'}
                         </button>
                     </div>
 
@@ -221,6 +299,11 @@ const Registration = () => {
                 @keyframes fadeIn {
                     from { opacity: 0; transform: translateY(-10px); }
                     to { opacity: 1; transform: translateY(0); }
+                }
+
+                @keyframes successPopupIn {
+                    from { opacity: 0; transform: translateY(16px) scale(0.96); }
+                    to { opacity: 1; transform: translateY(0) scale(1); }
                 }
             `}</style>
         </div>
@@ -301,6 +384,60 @@ const cancelButtonStyle: React.CSSProperties = {
     background: 'transparent',
     color: '#ccc',
     border: '1px solid #666',
+};
+
+const successOverlayStyle: React.CSSProperties = {
+    position: 'fixed',
+    inset: 0,
+    background: 'rgba(0, 0, 0, 0.75)',
+    backdropFilter: 'blur(4px)',
+    zIndex: 999,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '1.5rem'
+};
+
+const successPopupStyle: React.CSSProperties = {
+    width: '100%',
+    maxWidth: '560px',
+    background: 'linear-gradient(180deg, rgba(16, 16, 16, 0.96) 0%, rgba(8, 8, 8, 0.96) 100%)',
+    border: '1px solid rgba(231, 29, 54, 0.5)',
+    boxShadow: '0 0 30px rgba(231, 29, 54, 0.35), inset 0 0 18px rgba(231, 29, 54, 0.1)',
+    padding: '2rem',
+    textAlign: 'center',
+    animation: 'successPopupIn 0.35s ease-out'
+};
+
+const successTitleStyle: React.CSSProperties = {
+    fontFamily: 'var(--font-heading)',
+    fontSize: '1.7rem',
+    letterSpacing: '2px',
+    color: 'var(--color-primary)',
+    textShadow: '0 0 10px rgba(231, 29, 54, 0.6)',
+    marginBottom: '0.8rem'
+};
+
+const successTextStyle: React.CSSProperties = {
+    fontFamily: 'var(--font-digital)',
+    color: '#d6d6d6',
+    fontSize: '0.95rem',
+    lineHeight: 1.6,
+    marginBottom: '1.5rem'
+};
+
+const successButtonStyle: React.CSSProperties = {
+    background: 'var(--color-primary)',
+    border: '1px solid var(--color-primary)',
+    color: '#050505',
+    fontFamily: 'var(--font-heading)',
+    letterSpacing: '1px',
+    textTransform: 'uppercase',
+    fontSize: '0.95rem',
+    fontWeight: 700,
+    padding: '0.8rem 1.4rem',
+    cursor: 'pointer',
+    transition: 'all 0.25s ease'
 };
 
 export default Registration;

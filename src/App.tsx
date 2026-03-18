@@ -6,22 +6,30 @@ import EventDetails from './pages/EventDetails';
 import Registration from './pages/Registration';
 import About from './pages/About';
 import Committee from './pages/Committee';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
+import Timeline from './pages/Timeline';
 
 function App() {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/events/:id" element={<EventDetails />} />
-          <Route path="/register/:id" element={<Registration />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/commitee" element={<Committee />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        {/* Admin Routes (outside Layout - no navbar/footer) */}
+        <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+
+        {/* Public Routes (inside Layout with navbar/footer) */}
+        <Route path="/" element={<Layout><Home /></Layout>} />
+        <Route path="/events" element={<Layout><Events /></Layout>} />
+        <Route path="/events/:id" element={<Layout><EventDetails /></Layout>} />
+        <Route path="/register/:id" element={<Layout><Registration /></Layout>} />
+        <Route path="/about" element={<Layout><About /></Layout>} />
+        <Route path="/commitee" element={<Layout><Committee /></Layout>} />
+        <Route path="/timeline" element={<Layout><Timeline /></Layout>} />
+      </Routes>
     </Router>
   );
 }
 
 export default App;
+

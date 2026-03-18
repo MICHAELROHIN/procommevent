@@ -1,6 +1,9 @@
+import Navbar from '../components/Layout/Navbar';   
+
 const About = () => {
     return (
         <div style={{ padding: '4rem 2rem', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Navbar />
             <h1 className="stranger-title" style={{ marginBottom: '4rem', textAlign: 'center' }}>About Us</h1>
 
             <div className="hawkins-container" style={{ maxWidth: '800px', width: '100%' }}>

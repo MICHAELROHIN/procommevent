@@ -1,10 +1,14 @@
 // src/pages/Events.tsx
-import React from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { eventsData } from '../data/eventsData'; // Import the data
+import { eventsData, type EventCategory } from '../data/eventsData'; 
+import Navbar from '../components/Layout/Navbar';
 
 const Events = () => {
     const navigate = useNavigate();
+    const [activeCategory, setActiveCategory] = useState<EventCategory>('technical');
+
+    const categoryEvents = eventsData.filter((event) => event.category === activeCategory);
 
     return (
         <div style={{ 
@@ -14,9 +18,57 @@ const Events = () => {
             flexDirection: 'column', 
             alignItems: 'center' 
         }}>
+            <Navbar />
             <h1 className="stranger-title" style={{ marginBottom: '4rem', textAlign: 'center' }}>
                 Upcoming Events
             </h1>
+
+            <div
+                style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                    gap: '1rem',
+                    marginBottom: '2.5rem'
+                }}
+            >
+                <button
+                    type="button"
+                    onClick={() => setActiveCategory('technical')}
+                    style={{
+                        background: activeCategory === 'technical' ? 'var(--color-primary)' : 'transparent',
+                        border: '1px solid var(--color-primary)',
+                        color: activeCategory === 'technical' ? '#050505' : 'var(--color-primary)',
+                        padding: '0.7rem 1.4rem',
+                        fontFamily: 'var(--font-heading)',
+                        letterSpacing: '1px',
+                        textTransform: 'uppercase',
+                        cursor: 'pointer',
+                        transition: 'all 0.25s ease',
+                        boxShadow: activeCategory === 'technical' ? '0 0 14px rgba(231, 29, 54, 0.45)' : 'none'
+                    }}
+                >
+                    Technical Events
+                </button>
+                <button
+                    type="button"
+                    onClick={() => setActiveCategory('non-technical')}
+                    style={{
+                        background: activeCategory === 'non-technical' ? 'var(--color-primary)' : 'transparent',
+                        border: '1px solid var(--color-primary)',
+                        color: activeCategory === 'non-technical' ? '#050505' : 'var(--color-primary)',
+                        padding: '0.7rem 1.4rem',
+                        fontFamily: 'var(--font-heading)',
+                        letterSpacing: '1px',
+                        textTransform: 'uppercase',
+                        cursor: 'pointer',
+                        transition: 'all 0.25s ease',
+                        boxShadow: activeCategory === 'non-technical' ? '0 0 14px rgba(231, 29, 54, 0.45)' : 'none'
+                    }}
+                >
+                    Non-Technical Events
+                </button>
+            </div>
 
             <div style={{ 
                 display: 'grid', 
@@ -25,7 +77,7 @@ const Events = () => {
                 maxWidth: '1200px', 
                 width: '100%' 
             }}>
-                {eventsData.map((event, index) => (
+                {categoryEvents.map((event, index) => (
                     <div 
                         key={event.id} 
                         className="hawkins-container event-card"
@@ -91,6 +143,12 @@ const Events = () => {
                         </button>
                     </div>
                 ))}
+
+                {categoryEvents.length === 0 && (
+                    <div className="hawkins-container" style={{ gridColumn: '1 / -1', textAlign: 'center' }}>
+                        <p className="stranger-text">No events are available in this category yet.</p>
+                    </div>
+                )}
             </div>
         </div>
     );
