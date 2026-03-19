@@ -2,8 +2,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { eventsData, type EventCategory } from '../data/eventsData'; 
-import Navbar from '../components/Layout/Navbar';
-
 const Events = () => {
     const navigate = useNavigate();
     const [activeCategory, setActiveCategory] = useState<EventCategory>('technical');
@@ -13,14 +11,12 @@ const Events = () => {
     return (
         <div style={{ 
             padding: '4rem 2rem', 
-            minHeight: '100vh', 
             display: 'flex', 
             flexDirection: 'column', 
             alignItems: 'center' 
         }}>
-            <Navbar />
             <h1 className="stranger-title" style={{ marginBottom: '4rem', textAlign: 'center' }}>
-                Upcoming Events
+                Events
             </h1>
 
             <div

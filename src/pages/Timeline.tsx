@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { eventsData, type EventCategory } from '../data/eventsData';
-import Navbar from '../components/Layout/Navbar';
 
 const Timeline = () => {
     const [activeCategory, setActiveCategory] = useState<EventCategory>('technical');
@@ -19,7 +18,6 @@ const Timeline = () => {
             maxWidth: '1000px',
             margin: '0 auto'
         }}>
-            <Navbar />
             <h2 className="stranger-title" style={{ margin: '1rem 0 3rem 0', textAlign: 'center' }}>
                 Event Timeline
             </h2>
