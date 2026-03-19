@@ -16,9 +16,12 @@ const Registration = () => {
         department: '',
         branch: '',
         teamLeadName: '',
-        teamLeadEmail: '', // Added Lead Email
+        teamLeadEmail: '',
         teamLeadPhone: '',
-        teamSize: 1
+        teamSize: 1,
+        abstract: '',
+        transport: 'no',
+        locality: ''
     });
 
     // Dynamic State for Additional Members (Added Phone)
@@ -77,6 +80,9 @@ const Registration = () => {
                 teamLeadPhone: formData.teamLeadPhone,
                 teamSize: formData.teamSize,
                 members: members,
+                abstract: event?.id === 11 ? formData.abstract : undefined,
+                transport: formData.transport,
+                locality: formData.transport === 'yes' ? formData.locality : undefined,
             };
 
             const response = await fetch(`${API_URL}/api/register`, {
@@ -182,6 +188,44 @@ const Registration = () => {
                         </div>
                     </div>
 
+                    {/* Section 2.5: Abstract (Only for Portal of Innovations) */}
+                    {event.id === 11 && (
+                        <div style={{ animation: 'fadeIn 0.5s ease' }}>
+                            <h3 style={sectionHeaderStyle}>Innovation Abstract</h3>
+                            <div style={{ marginTop: '1rem' }}>
+                                <label style={labelStyle}>Project/Idea Abstract (Max 200 words)</label>
+                                <textarea 
+                                    value={formData.abstract}
+                                    onChange={(e) => {
+                                        const words = e.target.value.trim().split(/\s+/).filter(Boolean);
+                                        if (words.length <= 200 || e.target.value.length < formData.abstract.length) {
+                                            setFormData({...formData, abstract: e.target.value});
+                                        }
+                                    }}
+                                    required
+                                    placeholder="Describe your innovative idea or project here..."
+                                    style={{ 
+                                        ...inputStyle, 
+                                        width: '100%', 
+                                        height: '150px', 
+                                        marginTop: '0.5rem',
+                                        resize: 'vertical'
+                                    }}
+                                />
+                                <div style={{ 
+                                    display: 'flex', 
+                                    justifyContent: 'flex-end', 
+                                    marginTop: '0.5rem',
+                                    fontFamily: 'var(--font-digital)',
+                                    fontSize: '0.8rem',
+                                    color: formData.abstract.trim().split(/\s+/).filter(Boolean).length >= 200 ? 'var(--color-primary)' : '#888'
+                                }}>
+                                    {formData.abstract.trim().split(/\s+/).filter(Boolean).length} / 200 words
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Section 3: Team Configuration */}
                     <h3 style={sectionHeaderStyle}>Team Configuration</h3>
                     
@@ -254,6 +298,44 @@ const Registration = () => {
                             ))}
                         </div>
                     )}
+
+                    {/* Section 4: Transport Facility */}
+                    <h3 style={sectionHeaderStyle}>Transport Facility</h3>
+                    <div style={{ background: 'rgba(255,255,255,0.05)', padding: '1.5rem', borderLeft: '3px solid var(--color-primary)' }}>
+                        <label style={labelStyle}>Do you want transport facility?</label>
+                        <div style={{ display: 'flex', gap: '2rem', marginTop: '1rem' }}>
+                            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', color: '#fff' }}>
+                                <input 
+                                    type="radio" 
+                                    name="transport" 
+                                    value="yes" 
+                                    checked={formData.transport === 'yes'}
+                                    onChange={(e) => setFormData({...formData, transport: e.target.value})}
+                                    style={{ accentColor: 'var(--color-primary)' }}
+                                /> Yes
+                            </label>
+                            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', color: '#fff' }}>
+                                <input 
+                                    type="radio" 
+                                    name="transport" 
+                                    value="no" 
+                                    checked={formData.transport === 'no'}
+                                    onChange={(e) => setFormData({...formData, transport: e.target.value})}
+                                    style={{ accentColor: 'var(--color-primary)' }}
+                                /> No
+                            </label>
+                        </div>
+
+                        {formData.transport === 'yes' && (
+                            <div style={{ marginTop: '1.5rem', animation: 'fadeIn 0.4s ease' }}>
+                                <InputGroup 
+                                    label="Locality" 
+                                    value={formData.locality} 
+                                    onChange={(e: any) => setFormData({...formData, locality: e.target.value})} 
+                                />
+                            </div>
+                        )}
+                    </div>
 
                     {/* Action Buttons */}
                     <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
