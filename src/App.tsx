@@ -8,7 +8,7 @@ import About from './pages/About';
 import Committee from './pages/Committee';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
-import Timeline from './pages/Timeline';
+// import Timeline from './pages/Timeline';
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
         <Route path="/register/:id" element={<Layout><Registration /></Layout>} />
         <Route path="/about" element={<Layout><About /></Layout>} />
         <Route path="/commitee" element={<Layout><Committee /></Layout>} />
-        <Route path="/timeline" element={<Layout><Timeline /></Layout>} />
+        {/* <Route path="/timeline" element={<Layout><Timeline /></Layout>} /> */}
       </Routes>
     </Router>
   );

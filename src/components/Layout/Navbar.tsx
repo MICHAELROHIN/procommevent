@@ -74,7 +74,7 @@ const Navbar = () => {
             }}>
                 <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} style={getLinkStyle('/')}>Home</Link>
                 <Link to="/events" className={`nav-link ${location.pathname === '/events' ? 'active' : ''}`} style={getLinkStyle('/events')}>Events</Link>
-                <Link to="/timeline" className={`nav-link ${location.pathname === '/timeline' ? 'active' : ''}`} style={getLinkStyle('/timeline')}>Timeline</Link>
+                {/* <Link to="/timeline" className={`nav-link ${location.pathname === '/timeline' ? 'active' : ''}`} style={getLinkStyle('/timeline')}>Timeline</Link> */}
                 <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`} style={getLinkStyle('/about')}>About</Link>
                 <Link to="/commitee" className={`nav-link ${location.pathname === '/commitee' ? 'active' : ''}`} style={getLinkStyle('/commitee')}>Committee</Link>
             </div>
