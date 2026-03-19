@@ -120,7 +120,7 @@ const getFallbackAvatar = (name: string) => {
 const Committee = () => {
     return (
         <div className="committee-page">
-            <Navbar />
+            {/* <Navbar /> */}
 
             <section className="committee-hero">
                 <p className="committee-eyebrow">Hawkins Public Archive // Transmission Locked: 1986</p>
