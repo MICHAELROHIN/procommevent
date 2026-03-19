@@ -4,20 +4,23 @@ const CountdownClock = () => {
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
     useEffect(() => {
-        // Set target date to 13 days from now for demo
-        const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 13);
+        // Set target date to March 30, 2026 at 9:00 AM
+        const targetDate = new Date('2026-03-30T09:00:00');
 
         const interval = setInterval(() => {
             const now = new Date();
             const difference = targetDate.getTime() - now.getTime();
 
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((difference / 1000 / 60) % 60);
-            const seconds = Math.floor((difference / 1000) % 60);
-
-            setTimeLeft({ days, hours, minutes, seconds });
+            if (difference <= 0) {
+                setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+                clearInterval(interval);
+            } else {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((difference / 1000 / 60) % 60);
+                const seconds = Math.floor((difference / 1000) % 60);
+                setTimeLeft({ days, hours, minutes, seconds });
+            }
         }, 1000);
 
         return () => clearInterval(interval);
@@ -52,7 +55,7 @@ const CountdownClock = () => {
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '0', flexWrap: 'wrap' }}>
             <div style={timeBlockStyle}>
                 <div style={numberStyle}>{String(timeLeft.days).padStart(2, '0')}</div>
                 <div style={labelStyle}>Days</div>

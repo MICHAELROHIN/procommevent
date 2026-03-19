@@ -1,12 +1,4 @@
-import { useLocation } from 'react-router-dom';
-
 const Footer = () => {
-    const location = useLocation();
-
-    // Hide footer on home page
-    if (location.pathname === '/') {
-        return null;
-    }
 
     return (
         <footer style={{
@@ -121,10 +113,25 @@ const Footer = () => {
                 <div className="footer-section">
                     <h4 className="stranger-text" style={{ color: 'var(--color-primary)', border: 'none', fontSize: '1rem' }}>Connect</h4>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '0.5rem' }}>
-                        <div className="social-icon">IG</div>
-                        <div className="social-icon">TW</div>
-                        <div className="social-icon">LI</div>
-                    </div>
+                        <a 
+                            href="https://www.instagram.com/ieee.english_literary.sec?igsh=MWFubGw0MXg4YnZhbQ==" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="social-icon"
+                            style={{ textDecoration: 'none' }}
+                        >
+                            IG
+                        </a> 
+                        <a 
+                            href="https://www.linkedin.com/company/ssec-ieee-procomm-society/" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="social-icon"
+                            style={{ textDecoration: 'none' }}
+                        >
+                            LI
+                        </a>
+                     </div>
                 </div>
             </div>
 

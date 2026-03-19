@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import Footer from './Footer';
+import Navbar from './Navbar';
 import VideoBackground from '../Background3D/Background3D';
 
 interface LayoutProps {
@@ -16,6 +17,7 @@ const Layout = ({ children }: LayoutProps) => {
             zIndex: 1
         }}>
             <VideoBackground />
+            <Navbar />
             <main style={{ flex: 1, position: 'relative' }}>
                 {children}
             </main>

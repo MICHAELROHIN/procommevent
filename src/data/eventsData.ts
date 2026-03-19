@@ -1,209 +1,408 @@
-// src/data/eventsData.ts
-
 export type EventCategory = 'technical' | 'non-technical';
 
-export const eventsData = [
+export interface Event {
+    id: number;
+    title: string;
+    category: EventCategory;
+    date: string;
+    location: string;
+    description: string;
+    fullDescription: string;
+    teamSize: string;
+    time: string;
+    venue: string;
+    image: string;
+    instructions: string;
+    eligibility: string;
+    rounds: {
+        name: string;
+        mode: string;
+        date: string;
+        desc: string;
+    }[];
+    coordinators: {
+        student: string[];
+        staff: string[];
+    };
+}
+
+export const eventsData: Event[] = [
     {
-        id: 1,
-        title: "The Upside Down Hackathon",
-        category: 'technical' as EventCategory,
-        date: "Oct 28, 2024",
-        location: "Hawkins Lab",
-        description: "Code your way out of the alternate dimension. 24-hour survival coding challenge.",
-        fullDescription: "Step into the Upside Down where logic is twisted. Participants must build a survival tool using open-source tech to escape the dimension. Expect power outages and flickering lights.",
-        teamSize: "3-4 members",
-        time: "9:00 AM - 9:00 AM (24 Hrs)",
-        venue: "Hawkins National Lab, Level B2",
-        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1000",
-        instructions: "Bring your own laptops and chargers. Sleep is optional. Coffee provided by Hopper.",
-        eligibility: "Open to all departments. No telekinetic abilities required (but helpful).",
-        rounds: [
-            { name: "Round 1: The Gate", mode: "Online", date: "Oct 20", desc: "Algorithm sorting challenges to open the gate." },
-            { name: "Round 2: Survival", mode: "Offline", date: "Oct 28", desc: "24-hour product build to close the rift." }
-        ],
-        coordinators: {
-            student: ["Mike Wheeler - 9876543210", "Dustin Henderson - 9876543211"],
-            staff: ["Mr. Clarke - 9998887776"]
+
+       
+    id: 3,
+    title: "Promptverse",
+    category: 'technical' as EventCategory,
+    date: "March 30, 2026",
+    location: "Alpha Hall",
+    description: "A Stranger Things–inspired AI challenge exploring prompt engineering and creative AI outputs.",
+    fullDescription: "Promptverse is a Stranger Things–inspired AI challenge where participants explore the power of prompt engineering to create and control AI-generated outputs. The event tests creativity, logical thinking, and communication skills, pushing teams to transform simple ideas into impactful digital solutions.",
+    teamSize: "3 members",
+    time: "9:00 AM - 4:00 PM",
+    venue: "Alpha Hall",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000",
+    instructions: "Teams of 3 must bring a laptop with Ethernet cable and follow prompt limits; AI is allowed only in the specified round.",
+    eligibility: "Open to all students from any department and year.",
+    rounds: [
+        { 
+            name: "Round 1: PromptDecode", 
+            mode: "Online", 
+            date: "TBD", 
+            desc: "Write clear prompts to accurately recreate the given image." 
+        },
+        { 
+            name: "Round 2: WebForge", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Build a complete website for a given sector using only limited prompt attempts." 
         }
+    ],
+    coordinators: {
+        student: [
+            "Sripavithra Devi M - 8220853163",
+            "Ezhil M - 9600577214"
+        ],
+        staff: [
+            "Ms. P.R. Maya (Assistant Professor)"
+        ]
+    }
+
     },
     {
-        id: 2,
-        title: "Demogorgon Debugging",
-        category: 'technical' as EventCategory,
-        date: "Nov 02, 2024",
-        location: "Arcade",
-        description: "Hunt down bugs that are tearing through the firewall. Intro to cybersecurity.",
-        fullDescription: "A capture-the-flag (CTF) style event. A Demogorgon virus has infected the school network. Trace the packets, decrypt the payloads, and kill the process.",
-        teamSize: "2 members",
-        time: "10:00 AM",
-        venue: "Computer Lab 3",
-        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=1000",
-        instructions: "Knowledge of Linux CLI is mandatory. Do not execute live malware.",
-        eligibility: "CS/IT Students only.",
-        rounds: [
-            { name: "Round 1: Trace", mode: "Online", date: "Oct 30", desc: "Packet analysis quiz." },
-            { name: "Round 2: Exterminate", mode: "Offline", date: "Nov 02", desc: "Live CTF environment." }
-        ],
-        coordinators: {
-            student: ["Nancy Wheeler - 8887776665"],
-            staff: ["Dr. Owens - 5554443332"]
+        
+    id: 11,
+    title: "Portal of Innovations",
+    category: 'technical' as EventCategory,
+    date: "March 30, 2026",
+    location: "Newton Hall",
+    description: "A platform for presenting innovative ideas, projects, and prototypes with real-world impact.",
+    fullDescription: "Portal of Innovations is a platform where ideas step out of imagination and enter reality. Participants present their concepts, projects, or prototypes by explaining the thought, purpose, and real-world impact behind them. This event encourages originality, problem-solving, and innovation while creatively connecting ideas to the Stranger Things theme. It provides a stage for students to showcase their technical knowledge, creativity, and presentation skills.",
+    teamSize: "3 to 4 members",
+    time: "9:00 AM - 4:00 PM",
+    venue: "Newton Hall",
+    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=1000",
+    instructions: "Ideas must be original and innovative. Creative connection with Stranger Things theme is mandatory. Prototype/demo is optional but earns bonus marks. Strictly follow the time limit (7+3 minutes). Maintain professional behavior during presentation and Q&A. Jury decisions are final.",
+    eligibility: "Open to all students.",
+    rounds: [
+        { 
+            name: "Presentation (PPT + Prototype)", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Teams present their innovative idea, concept, or project. A working prototype, simulation, or demonstration can be included to showcase practical implementation." 
         }
+    ],
+    coordinators: {
+        student: [
+            "Jai Krithika R - 8122341110",
+            "Saranya P P - 8122930692"
+        ],
+        staff: [
+            "Srija"
+        ]
+    }
+
+
     },
     {
-        id: 3,
-        title: "Mind Flayer AI Workshop",
-        category: 'technical' as EventCategory,
-        date: "Nov 10, 2024",
-        location: "Starcourt Mall",
-        description: "Understanding hive mind algorithms and neural networks. Don't let it control you.",
-        fullDescription: "Dive deep into Neural Networks and Swarm Intelligence. Learn how the Mind Flayer controls its host and how to replicate that efficiency in Python.",
-        teamSize: "Individual",
-        time: "11:00 AM",
-        venue: "Starcourt Mall Atrium (Seminar Hall)",
-        image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1000",
-        instructions: "Pre-install Python and TensorFlow. Do not connect to the hive mind.",
-        eligibility: "Open to all.",
-        rounds: [
-            { name: "Workshop", mode: "Offline", date: "Nov 10", desc: "Hands-on session on Neural Networks." },
-            { name: "Mini-Hack", mode: "Offline", date: "Nov 10", desc: "Build a mini-bot swarm simulation." }
-        ],
-        coordinators: {
-            student: ["Will Byers - 7776665554"],
-            staff: ["Bob Newby - 2223334445"]
+        
+    id: 4,
+    title: "Upside Dub",
+    category: 'non-technical' as EventCategory,
+    date: "March 30, 2026",
+    location: "VRR Hall",
+    description: "A creative communication event focused on dialogue decoding, genre transformation, and live narration.",
+    fullDescription: "UpsideDub is an offline creative communication event designed to evaluate participants’ imagination, observation skills, language proficiency, and spontaneous thinking through visual and text-based cinematic challenges. The event focuses on reinterpreting familiar content by decoding dialogues, transforming genres, and performing live narration based entirely on visual cues. Participants compete in teams across three structured rounds that progressively test analytical thinking, creativity, and improvisation. The event emphasizes teamwork, expressive communication, and originality in a fun and engaging environment. Winners are determined based on cumulative performance across all rounds.",
+    teamSize: "2 members",
+    time: "9:00 AM - 4:00 PM",
+    venue: "VRR Hall",
+    image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&q=80&w=1000",
+    instructions: "English must be used for all dialogues and narration. Vulgar, offensive, or inappropriate content is strictly prohibited. Teams must adhere to time limits. All team members must participate actively. Judges’ decisions are final.",
+    eligibility: "Open to all students.",
+    rounds: [
+        { 
+            name: "Round 1: Dialogue Decode", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Famous movie dialogues are displayed as text. Teams identify the correct movie title and can earn bonus points for creative subtitle rewrites. Top 15 teams advance." 
+        },
+        { 
+            name: "Round 2: Genre Switched", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Muted video clips are played. Teams reinterpret the clip by changing its genre and creating matching dialogues. Top 5 teams advance." 
+        },
+        { 
+            name: "Round 3: Live Narration", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Teams perform live narration for a video clip during playback without prior scripting." 
         }
+    ],
+    coordinators: {
+        student: [
+            "Saai Shrinidhi S V - 9042969359",
+            "Jefrin M - 8524024061"
+        ],
+        staff: [
+            "Dr. S. Kogila (Assistant Professor)"
+        ]
+    }
+
     },
     {
-        id: 4,
-        title: "Cerebro Radio Comms",
-        category: 'technical' as EventCategory,
-        date: "Nov 15, 2024",
-        location: "Weathertop",
-        description: "Building long-range HAM radios. Learn to communicate across the void.",
-        fullDescription: "Build your own 'Cerebro' using Arduino and RF modules. Establish a communication link without using the internet.",
-        teamSize: "3 members",
-        time: "2:00 PM",
-        venue: "Electronics Lab",
-        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1000",
-        instructions: "Basic soldering skills required. Kits will be provided.",
-        eligibility: "ECE/EEE/CS students.",
-        rounds: [
-            { name: "Round 1: Circuit Design", mode: "Online", date: "Nov 12", desc: "Submit schematic designs." },
-            { name: "Round 2: Assembly", mode: "Offline", date: "Nov 15", desc: "Assemble and test the radio range." }
-        ],
-        coordinators: {
-            student: ["Dustin Henderson - 9988776655"],
-            staff: ["Mr. Clarke - 1122334455"]
+        
+    id: 5,
+    title: "Neo Hawkins",
+    category: 'technical' as EventCategory,
+    date: "March 30, 2026",
+    location: "Apple Hall (Sri Sairam Engineering College)",
+    description: "A gamified technical event combining coding, debugging, logic, and UI/UX challenges in a Monopoly-style board game.",
+    fullDescription: "Neo Hawkins is an offline, gamified technical event designed to test participants’ problem-solving, coding, debugging, logical reasoning, and UI/UX design skills through an interactive Monopoly-style board game. Participants roll dice on a physical board and land on different task blocks such as coding (DSA-based), debugging, logic, and UI/UX design. Each block presents a randomly selected challenge from a prepared task pool, making the competition dynamic and engaging.",
+    teamSize: "4 members",
+    time: "10:00 AM - 4:00 PM",
+    venue: "Apple Hall (Sri Sairam Engineering College)",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000",
+    instructions: "Each team must bring at least one laptop. Internet usage is partially allowed only for code execution under supervision. Searching for solutions or copying code is strictly prohibited. Use of AI tools (ChatGPT, Copilot, etc.) is strictly prohibited. All team members must participate actively. Judges’ decisions are final.",
+    eligibility: "Open to all students.",
+    rounds: [
+        { 
+            name: "Round 1: Problem Solving & Debugging", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Participants roll the dice on a Monopoly-style board and solve coding, debugging, and penalty tasks based on where they land." 
+        },
+        { 
+            name: "Round 2: UI/UX Design & Bonus", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Participants roll the dice and complete UI/UX challenges of varying difficulty levels (easy, medium, hard)." 
         }
+    ],
+    coordinators: {
+        student: [
+            "Sudharson Manikandan R - 9789446671",
+            "Aruna Priya R S - 9629782641"
+        ],
+        staff: [
+            "Geetha (Assistant Professor)"
+        ]
+    }
+
     },
     {
-        id: 5,
-        title: "Hellfire Club D&D Night",
-        category: 'non-technical' as EventCategory,
-        date: "Nov 22, 2024",
-        location: "High School Cafe",
-        description: "Strategic planning and role-playing game night. Join the campaign.",
-        fullDescription: "The ultimate test of strategy, luck, and teamwork. The Hellfire Club invites you to a D&D campaign. Can you defeat Vecna?",
-        teamSize: "4-5 members",
-        time: "6:00 PM",
-        venue: "Cafeteria",
-        image: "https://images.unsplash.com/photo-1610890716271-e2fe9e9b0d6d?auto=format&fit=crop&q=80&w=1000",
-        instructions: "Character sheets provided. Bring your own dice if you have them.",
-        eligibility: "Open to everyone. No jocks allowed (just kidding).",
-        rounds: [
-            { name: "The Campaign", mode: "Offline", date: "Nov 22", desc: "A 4-hour one-shot campaign." }
-        ],
-        coordinators: {
-            student: ["Eddie Munson - 6666666666"],
-            staff: ["Unknown - 0000000000"]
+        
+    id: 6,
+    title: "Upside Down Crisis",
+    category: 'technical' as EventCategory,
+    date: "March 30, 2026",
+    location: "TBD",
+    description: "A technical challenge focused on circuit failures, problem-solving, and real-world system design.",
+    fullDescription: "Upside Down Crisis is a technical challenge where participants explore real-world circuit and system failures. The event tests problem-solving ability, logical thinking, and hands-on skills, pushing teams to analyze problems and build effective solutions under time constraints.",
+    teamSize: "3 members",
+    time: "10:30 AM - 3:30 PM",
+    venue: "TBD",
+    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1000",
+    instructions: "Teams of 3 must bring two laptops with Ethernet cables and a TinkerCAD account. Participants should have basic knowledge of Arduino (C programming) and complete tasks within the given time.",
+    eligibility: "Open to all students.",
+    rounds: [
+        { 
+            name: "Round 1: The First Disturbance", 
+            mode: "Offline", 
+            date: "March 30 ", 
+            desc: "Participants solve technical and logic-based challenges to test analytical thinking and core electronics knowledge." 
+        },
+        { 
+            name: "Round 2: Into the Upside Down", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Teams design and simulate a working solution in TinkerCAD based on a given problem statement." 
+        },
+        { 
+            name: "Round 3: Escape Protocol", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Teams present their solution, explaining design, logic, and working to the jury." 
         }
+    ],
+    coordinators: {
+        student: [
+            "Thivyadarsini M - 9087542187",
+            "Kanimozhi R - 7708942006"
+        ],
+        staff: [
+            "Dr. K. Rajesh (Assistant Professor)"
+        ]
+    }
+
     },
     {
-        id: 6,
-        title: "Project Nina: UI/UX",
-        category: 'technical' as EventCategory,
-        date: "Dec 01, 2024",
-        location: "Rainbow Room",
-        description: "Designing interfaces that tap into human potential. Focus on user psychology.",
-        fullDescription: "Design the interface for a psychic control panel. Focus on accessibility, color theory, and 80s aesthetics.",
-        teamSize: "2 members",
-        time: "10:00 AM",
-        venue: "Design Studio",
-        image: "https://images.unsplash.com/photo-1586717791821-3f44a5638d48?auto=format&fit=crop&q=80&w=1000",
-        instructions: "Bring Figma/Adobe XD installed laptops.",
-        eligibility: "Open to all.",
-        rounds: [
-            { name: "Round 1: Wireframe", mode: "Online", date: "Nov 28", desc: "Submit low-fidelity sketches." },
-            { name: "Round 2: Prototype", mode: "Offline", date: "Dec 01", desc: "High-fidelity interactive prototype." }
-        ],
-        coordinators: {
-            student: ["Eleven - 0110110111"],
-            staff: ["Dr. Brenner - 1111111111"]
+      
+    id: 7,
+    title: "Escape the Upside Down",
+    category: 'technical' as EventCategory,
+    date: "March 30, 2026",
+    location: "Beta Hall (Sri Sairam Engineering College)",
+    description: "A digital, story-driven escape room event focused on puzzles, logic, and teamwork.",
+    fullDescription: "Escape the Upside Down is a digital, story-driven escape room event where participants solve hidden puzzles, clues, and mini challenges to progress. The event focuses on logical thinking, observation, and teamwork with a cyber-inspired theme.",
+    teamSize: "2 to 3 members",
+    time: "Starts at 11:00 AM (3 hrs duration)",
+    venue: "Beta Hall (Sri Sairam Engineering College)",
+    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1000",
+    instructions: "Each team must bring at least one laptop. Internet usage is strictly prohibited. Use of AI tools is strictly prohibited. No communication between teams. All members must participate. Judges’ decisions are final.",
+    eligibility: "Open to all students.",
+    rounds: [
+        { 
+            name: "Main Gameplay Session", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Participants solve a series of interconnected hidden puzzles, clues, and mini challenges within the given time." 
+        },
+        { 
+            name: "Final Scoring & Results", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Teams are evaluated based on number of challenges solved and time taken." 
+        },
+        { 
+            name: "Winner Announcement", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Final results are घोषित and winners are announced." 
         }
+    ],
+    coordinators: {
+        student: [
+            "Samarjeeth R - +91 9445571382",
+            "Nithish R - +91 6369343445"
+        ],
+        staff: [
+            "Ms. Mini Stanely (Associate Professor)"
+        ]
+    }
+
+
+
+
     },
     {
-        id: 7,
-        title: "Palace Arcade Retro Dev",
-        category: 'technical' as EventCategory,
-        date: "Dec 05, 2024",
-        location: "The Palace",
-        description: "Game development workshop using 8-bit assets and synthwave aesthetics.",
-        fullDescription: "Create a clone of Dig Dug or Pac-Man using Unity or Godot. Focus on retro mechanics and pixel art.",
-        teamSize: "Individual or Pair",
-        time: "9:00 AM",
-        venue: "Computer Lab 1",
-        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1000",
-        instructions: "Assets pack will be provided.",
-        eligibility: "Open to all gamers.",
-        rounds: [
-            { name: "Game Jam", mode: "Offline", date: "Dec 05", desc: "6-hour game dev sprint." }
-        ],
-        coordinators: {
-            student: ["Max Mayfield - 3334445556"],
-            staff: ["Keith - 9999999999"]
+        
+    id: 8,
+    title: "Survivox",
+    category: 'non-technical' as EventCategory,
+    date: "March 30, 2026",
+    location: "Library",
+    description: "An individual event testing communication, creativity, and spontaneity through persuasive roleplay.",
+    fullDescription: "Survivox is a creative communication event where participants imagine themselves as famous personalities on a sinking ship. With only one lifejacket available, each participant must convincingly argue why they deserve to survive. The event tests strategic thinking, creativity, communication, and spontaneity as participants justify their importance and strengths within a limited time.",
+    teamSize: "Individual",
+    time: "9:00 AM - 4:00 PM",
+    venue: "Library",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1000",
+    instructions: "Speech should be in English only. Characters will be disclosed on the spot. Avoid inappropriate or vulgar content. Adhere to time limits. Judges’ decisions are final.",
+    eligibility: "Open to all students.",
+    rounds: [
+        { 
+            name: "Main Round: Survival Pitch", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Participants assume the role of a given personality and deliver a 2-minute persuasive speech to convince the captain to give them the lifejacket." 
         }
+    ],
+    coordinators: {
+        student: [
+            "Palaparthi Nandini - 9894178103",
+            "Nayana J S - 8056782510"
+        ],
+        staff: [
+            "Ms. S. Anuradha (Assistant Professor)",
+            "Dr. R V. Sivaraman (Assistant Professor)"
+        ]
+    }
+
     },
     {
-        id: 8,
-        title: "Into the Void: VR Tech",
-        category: 'technical' as EventCategory,
-        date: "Dec 12, 2024",
-        location: "Gymnasium",
-        description: "Sensory deprivation and Virtual Reality exploration.",
-        fullDescription: "Experience the latest in VR technology. Build a simple VR environment that mimics the sensory deprivation tank.",
-        teamSize: "Individual",
-        time: "1:00 PM",
-        venue: "AV Room",
-        image: "https://images.unsplash.com/photo-1622979135225-d2ba269fb1bd?auto=format&fit=crop&q=80&w=1000",
-        instructions: "No motion sickness history recommended.",
-        eligibility: "Open to all.",
-        rounds: [
-            { name: "Demo Day", mode: "Offline", date: "Dec 12", desc: "Showcase of VR concepts." }
-        ],
-        coordinators: {
-            student: ["Lucas Sinclair - 8888888888"],
-            staff: ["Mr. Clarke - 1231231234"]
+        
+    id: 9,
+    title: "Case 404: Reality Not Found",
+    category: 'non-technical' as EventCategory,
+    date: "March 30, 2026",
+    location: "SSR Hall",
+    description: "An immersive investigative challenge where teams solve a mysterious case using logic, language, and deduction.",
+    fullDescription: "Case 404: Reality Not Found is an immersive, LA Noire–inspired investigative challenge where teams act as detectives solving a mysterious incident using language as their only weapon. There are no physical clues — only witness statements, handwritten notes, transcripts, and hidden linguistic inconsistencies. Facts feel distorted, testimonies don't align, and reality itself becomes unreliable, pushing participants to uncover the truth through sharp reasoning and analysis.",
+    teamSize: "2 to 3 members",
+    time: "3 Hours",
+    venue: "SSR Hall",
+    image: "https://images.unsplash.com/photo-1526378722484-cc5c510f3c92?auto=format&fit=crop&q=80&w=1000",
+    instructions: "Each team must bring a pen and notebook. AI tools, mobile phones, and smart devices are strictly prohibited. All teams must be present for every round. Judges’ decisions are final.",
+    eligibility: "Open to all students with strong English comprehension, logical reasoning, and analytical skills.",
+    rounds: [
+        { 
+            name: "Round 1: Signal Detected", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Teams analyze a simple case snapshot with a clear logical conclusion and submit their findings." 
+        },
+        { 
+            name: "Round 2: Distorted Testimonies", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "A moderate case with multiple documents and witness transcripts. Teams identify contradictions with limited questioning." 
+        },
+        { 
+            name: "Round 3: Reality Check", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Teams choose a suspect in a complex case and defend their reasoning using motive, means, and opportunity." 
         }
+    ],
+    coordinators: {
+        student: [
+            "Pranavaashree J - 9043631278",
+            "Hariprasath JG - 9487223547"
+        ],
+        staff: [
+            "Ms. M. Monisha (Assistant Professor)"
+        ]
+    }
+
     },
     {
-        id: 9,
-        title: "Snow Ball Gala",
-        category: 'non-technical' as EventCategory,
-        date: "Dec 20, 2024",
-        location: "School Hall",
-        description: "End of year networking event. Dress sharp, it's 1984.",
-        fullDescription: "The tech symposium closing ceremony. Networking, food, and 80s music. Awards for all previous events will be distributed here.",
-        teamSize: "N/A",
-        time: "7:00 PM",
-        venue: "Main Auditorium",
-        image: "https://images.unsplash.com/photo-1514525253440-b393452e3383?auto=format&fit=crop&q=80&w=1000",
-        instructions: "Formal attire mandatory.",
-        eligibility: "Ticket required.",
-        rounds: [
-            { name: "The Dance", mode: "Offline", date: "Dec 20", desc: "Just have fun." }
-        ],
-        coordinators: {
-            student: ["Steve Harrington - 1234567890"],
-            staff: ["Principal Coleman - 0987654321"]
+        
+    id: 10,
+    title: "MemeStorm",
+    category: 'non-technical' as EventCategory,
+    date: "March 30, 2026",
+    location: "Communication Lab",
+    description: "A creative event where participants explain technical concepts using memes.",
+    fullDescription: "MemeStorm is a fun and creative event where participants explain technology concepts using memes. It encourages students to combine technical knowledge with humor to simplify complex ideas in an engaging way. The event promotes creativity, digital skills, and innovative thinking through entertaining and informative meme-based content.",
+    teamSize: "2 members",
+    time: "9:00 AM - 4:00 PM",
+    venue: "Communication Lab",
+    image: "https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&q=80&w=1000",
+    instructions: "Memes must be original and digitally created. Plagiarism is strictly prohibited. Only technical topics are allowed. Vulgar or offensive content is not permitted. Jury decisions are final. Participants should bring their own laptop.",
+    eligibility: "Open to all students.",
+    rounds: [
+        { 
+            name: "Round 1: Meme Creation & Explanation", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Teams create an original meme on a given technical topic and explain the concept clearly and simply." 
+        },
+        { 
+            name: "Round 2: Meme Story (Comic Style)", 
+            mode: "Offline", 
+            date: "March 30", 
+            desc: "Teams create a short comic-style meme story (2–4 frames) presenting a technical concept in a logical and creative way." 
         }
+    ],
+    coordinators: {
+        student: [
+            "Madhu Sri R - 7826045804",
+            "Keertana P - 6382760098"
+        ],
+        staff: [
+            "Dr. J. Ranjith Kumar (Associate Professor)"
+        ]
+    }
+
     }
 ];

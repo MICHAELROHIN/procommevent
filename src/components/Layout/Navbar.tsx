@@ -25,10 +25,10 @@ const Navbar = () => {
             fontFamily: 'var(--font-stranger)',
             zIndex: 1000,
             position: 'relative',
-            marginBottom: '2rem',
+            marginBottom: '0.5rem',
             width: '100%',
             maxWidth: '800px',
-            margin: '0 auto 2rem auto'
+            margin: '0 auto 0.5rem auto'
         }}>
             <style>
                 {`
