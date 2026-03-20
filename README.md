@@ -59,18 +59,26 @@ These values are already present in `netlify.toml`, so Netlify can auto-detect t
 
 ### 3. Set Environment Variables in Netlify
 
-In Netlify -> Site settings -> Environment variables, add:
+**IMPORTANT:** Environment variables must be set in Netlify Site Settings, NOT as a `.env` file in the repository.
 
-- `DB_HOST`
-- `DB_USER`
-- `DB_PASSWORD`
-- `DB_NAME`
-- `JWT_SECRET`
-- `ADMIN_PASSWORD`
+Steps:
+1. Go to your Netlify Site Dashboard
+2. Click **Site settings** (top-right)
+3. Go to **Build & deploy** → **Environment**
+4. Click **Edit variables**
+5. Add each variable:
 
-Optional:
+| Variable | Example | Required |
+|----------|---------|----------|
+| `DB_HOST` | `mysql.example.com` | Yes |
+| `DB_USER` | `procomm_user` | Yes |
+| `DB_PASSWORD` | `your_mysql_password` | Yes |
+| `DB_NAME` | `procomm_literary` | Yes |
+| `JWT_SECRET` | `random_string_here` | Yes |
+| `ADMIN_PASSWORD` | `admin_password_123` | Yes |
+| `VITE_API_BASE_URL` | Leave empty | No |
 
-- `VITE_API_BASE_URL`
+**Note:** Do NOT include `.env` file in Git. The `.gitignore` already excludes `*.env` files for security. Your MySQL credentials should ONLY be stored in Netlify's environment variables, not in version control.
 
 For Netlify full-stack deployment, keep `VITE_API_BASE_URL` empty or unset so frontend calls `/api/*` on the same domain.
 
@@ -96,3 +104,43 @@ Trigger deploy from Netlify UI or by pushing commits. After deploy:
 
 - `server/server.js` now starts the HTTP listener only when run directly, so it works both for local server mode and serverless import mode.
 - Admin and registration pages now use environment-aware API base URLs.
+
+## Troubleshooting
+
+### Backend not running on Netlify
+
+**Problem:** API calls return 404 or functions don't execute.
+
+**Solutions:**
+
+1. **Verify environment variables are set** (most common issue)
+   - Check Netlify deploy logs: Site settings → Deploys → View deploy log
+   - Look for environment variable section in the logs
+   - Ensure ALL 6 required variables are present
+
+2. **Check MySQL database connectivity**
+   - Verify `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME` are correct
+   - Ensure your cloud MySQL is publicly accessible (if applicable)
+   - Test MySQL connection string locally first
+
+3. **Redeploy after setting environment variables**
+   - After adding env vars, manually trigger a new deploy in Netlify UI
+   - Or push a new commit to GitHub to trigger auto-deploy
+   - **Do NOT rely on old cache; always redeploy after changing env vars**
+
+4. **Check Netlify Function logs**
+   - Netlify UI → Functions → api → Logs tab
+   - Look for error messages about missing environment variables
+
+5. **Verify backend files are bundled**
+   - The `server/` folder should be included in the build
+   - Check that `npm run build` completes successfully locally
+   - Verify `netlify/functions/api.js` can import from `../../server/server.js`
+
+6. **Use a cloud MySQL database**
+   - Netlify Functions cannot access `localhost:5000` or local MySQL
+   - Must use a hosted database like:
+     - [Railway](https://railway.app/) (free tier available)
+     - [PlanetScale](https://planetscale.com/) (free MySQL)
+     - [Aiven](https://aiven.io/) (free PostgreSQL/MySQL trial)
+     - [AWS RDS](https://aws.amazon.com/rds/) or similar cloud service
