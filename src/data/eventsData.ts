@@ -314,7 +314,7 @@ export const eventsData: Event[] = [
     time: "9:00 AM - 4:00 PM",
     venue: "Sri Sairam Engineering College",
     image: survivoxImage,
-    instructions: "Speech should be in English only. Characters will be disclosed on the spot. Avoid inappropriate or vulgar content. Adhere to time limits. Judges’ decisions are final.",
+    instructions: "Characters will be disclosed on the spot. Avoid inappropriate or vulgar content. Adhere to time limits. Judge's decisions are final.",
     eligibility: "Open to all students.",
     eventFee: 25,
     rounds: [
